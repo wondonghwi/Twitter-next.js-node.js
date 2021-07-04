@@ -2,22 +2,14 @@ import React, { useCallback, useState } from "react";
 import { Button, Form, Input } from "antd";
 import Link from "next/link";
 import styled from "styled-components";
+import useInput from "../hooks/useInput";
 
 const LoginForm = ({ setIsLoggedIn }) => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onChangeId = useCallback((e) => {
-    setId(e.target.value);
-  }, []);
-
-  const onChangePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  }, []);
+  const [id, onChangeId] = useInput("");
+  const [password, onChangePassword] = useState("");
 
   //TODO AntDesign에서는 e.preventDefault가 자동으로 적용돼있음
   const onSubmitForm = useCallback(() => {
-    console.log(id, password);
     setIsLoggedIn(true);
   }, [id, password, setIsLoggedIn]);
 
