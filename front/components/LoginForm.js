@@ -3,15 +3,18 @@ import { Button, Form, Input } from "antd";
 import Link from "next/link";
 import styled from "styled-components";
 import useInput from "../hooks/useInput";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../reducers";
 
-const LoginForm = ({ setIsLoggedIn }) => {
+const LoginForm = () => {
+  const dispatch = useDispatch();
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useState("");
 
   //TODO AntDesign에서는 e.preventDefault가 자동으로 적용돼있음
   const onSubmitForm = useCallback(() => {
-    setIsLoggedIn(true);
-  }, [id, password, setIsLoggedIn]);
+    dispatch(loginAction(id, password));
+  }, [dispatch, id, password]);
 
   return (
     <FormWrapper onFinish={onSubmitForm}>

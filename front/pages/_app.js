@@ -1,5 +1,6 @@
 import "antd/dist/antd.css";
 import Head from "next/head";
+import wrapper from "../store/configStore";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -12,4 +13,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
