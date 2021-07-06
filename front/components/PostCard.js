@@ -12,7 +12,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import PostImages from "./PostImages";
 
-// import CommentForm from "./CommentForm";
+import CommentForm from "./CommentForm";
 // import PostCardContent from "./PostCardContent";
 // import FollowButton from "./FollowButton";
 
@@ -78,14 +78,14 @@ const PostCard = ({ post }) => {
       </Card>
       {commentFormOpened && (
         <>
-          {/*<CommentForm post={post} />*/}
+          <CommentForm post={post} />
           <List
             header={`${post.Comments.length} 댓글`}
             itemLayout="horizontal"
             dataSource={post.Comments}
             renderItem={(item) => (
               <li>
-                {/* <Comment
+                <Comment
                   author={item.User.nickname}
                   avatar={
                     <Link
@@ -98,7 +98,7 @@ const PostCard = ({ post }) => {
                     </Link>
                   }
                   content={item.content}
-                />*/}
+                />
               </li>
             )}
           />
