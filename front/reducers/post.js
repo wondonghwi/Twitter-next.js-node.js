@@ -9,13 +9,13 @@ export const initialState = {
       content: "첫 번째 게시글",
       Images: [
         {
-          src: "https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?udate=20180726",
+          src: "https://i.ytimg.com/vi/DhK14sY3mT4/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgwB1QW8ivw_9MT1QP8QTbFgO9Bg",
         },
         {
-          src: "https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?udate=20180726",
+          src: "https://i.ytimg.com/vi/DhK14sY3mT4/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgwB1QW8ivw_9MT1QP8QTbFgO9Bg",
         },
         {
-          src: "https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?udate=20180726",
+          src: "https://i.ytimg.com/vi/DhK14sY3mT4/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgwB1QW8ivw_9MT1QP8QTbFgO9Bg",
         },
       ],
       Comments: [
