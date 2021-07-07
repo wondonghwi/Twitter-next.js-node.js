@@ -6,7 +6,7 @@ export const initialState = {
         id: 1,
         nickname: "원동휘",
       },
-      content: "첫 번째 게시글",
+      content: "첫 번째 게시글 #해시태그 #먹방",
       Images: [
         {
           src: "https://i.ytimg.com/vi/DhK14sY3mT4/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgwB1QW8ivw_9MT1QP8QTbFgO9Bg",
@@ -23,7 +23,7 @@ export const initialState = {
           User: {
             nickname: "won",
           },
-          content: "넥스트 공부!!",
+          content: "두 번째 게시클 #넥스트 #고기",
         },
         {
           User: {
