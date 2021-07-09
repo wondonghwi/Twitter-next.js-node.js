@@ -6,12 +6,13 @@ function logInAPI(data) {
 }
 
 function* logIn(action) {
+  console.log(action);
   try {
     yield delay(1000);
     // const result = yield call(logInAPI, action.data);
     yield put({
       type: "LOG_IN_SUCCESS",
-      // data: result.data,
+      data: action.data,
     });
   } catch (err) {
     yield put({
@@ -47,10 +48,6 @@ function* watchLogIn() {
 
 function* watchLogOut() {
   yield takeEvery("LOG_OUT_REQUEST", logOut);
-}
-
-function* watchAddPost() {
-  yield takeEvery("ADD_POST_REQUEST", addPost);
 }
 
 export default function* userSaga() {
