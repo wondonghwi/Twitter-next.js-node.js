@@ -1,59 +1,78 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Button, Form, Input } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../reducers/post";
-import useInput from "../hooks/useInput";
+import React, { useCallback, useState, useEffect, useRef } from "react";
+import { Form, Input, Button, Image } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+
+import { ADD_POST_REQUEST } from "../reducers/post";
 
 const PostForm = () => {
-  const { imagePaths, addPostDone } = useSelector((state) => state.post);
-  const [text, onChangeText, setText] = useInput("");
   const dispatch = useDispatch();
+  const [text, setText] = useState("");
+  const { imagePaths, addPostLoading, addPostDone } = useSelector(
+    (state) => state.post
+  );
+
   const imageInput = useRef();
+  const onClickImageUpload = useCallback(() => {
+    imageInput.current.click();
+  }, []);
 
   useEffect(() => {
     if (addPostDone) {
       setText("");
     }
-  }, [addPostDone, setText]);
+  }, [addPostDone]);
 
-  const onClickImageUpload = useCallback(() => {
-    imageInput.current.click();
+  const onSubmitForm = useCallback(() => {
+    dispatch({
+      type: ADD_POST_REQUEST,
+      data: {
+        text,
+      },
+    });
   }, []);
 
-  const onSubmit = useCallback(() => {
-    dispatch(addPost(text));
-  }, [dispatch, text]);
+  const onChangeText = useCallback((e) => {
+    setText(e.target.value);
+  }, []);
 
   return (
     <Form
       style={{ margin: "10px 0 20px" }}
       encType="multipart/form-data"
-      onFinish={onSubmit}
+      onFinish={onSubmitForm}
     >
       <Input.TextArea
-        value={text}
-        onChange={onChangeText}
         maxLength={140}
         placeholder="어떤 신기한 일이 있었나요?"
+        value={text}
+        onChange={onChangeText}
       />
       <div>
         <input type="file" multiple hidden ref={imageInput} />
         <Button onClick={onClickImageUpload}>이미지 업로드</Button>
-        <Button type="primary" style={{ float: "right" }} htmlType="submit">
+        <Button
+          type="primary"
+          style={{ float: "right" }}
+          htmlType="submit"
+          loading={addPostLoading}
+        >
           짹짹
         </Button>
       </div>
       <div>
-        {imagePaths.map((v) => {
-          return (
-            <div key={v} style={{ display: "inline-block" }}>
-              <image src={v} style={{ width: "200px" }} alt={v} />
-              <div>
-                <Button>제거</Button>
-              </div>
+        {imagePaths.map((v) => (
+          <div key={v} style={{ display: "inline-block" }}>
+            <Image
+              src={`http://localhost:3065/${v}`}
+              width={200}
+              height={200}
+              alt={v}
+            />
+            <div>
+              <Button>제거</Button>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </Form>
   );

@@ -4,7 +4,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import useInput from "../hooks/useInput";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { SIGN_UP_REQUEST } from "../sagas/user";
+import { SIGN_UP_REQUEST } from "../reducers/user";
 
 const Signup = () => {
   const dispatch = useDispatch();

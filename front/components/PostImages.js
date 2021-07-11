@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { PlusOutlined } from "@ant-design/icons";
+
 import ImagesZoom from "./ImagesZoom";
 
 const PostImages = ({ images }) => {
@@ -16,8 +17,9 @@ const PostImages = ({ images }) => {
 
   if (images.length === 1) {
     return (
-      <div>
+      <>
         <Image
+          role="presentation"
           src={images[0].src}
           width={200}
           height={200}
@@ -25,7 +27,7 @@ const PostImages = ({ images }) => {
           onClick={onZoom}
         />
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
-      </div>
+      </>
     );
   }
   if (images.length === 2) {
@@ -33,6 +35,7 @@ const PostImages = ({ images }) => {
       <>
         <div>
           <Image
+            role="presentation"
             src={images[0].src}
             alt={images[0].src}
             width={200}
@@ -40,6 +43,7 @@ const PostImages = ({ images }) => {
             onClick={onZoom}
           />
           <Image
+            role="presentation"
             src={images[1].src}
             alt={images[1].src}
             width={200}
@@ -55,6 +59,7 @@ const PostImages = ({ images }) => {
     <>
       <div>
         <Image
+          role="presentation"
           src={images[0].src}
           alt={images[0].src}
           width={200}
@@ -81,4 +86,5 @@ const PostImages = ({ images }) => {
     </>
   );
 };
+
 export default PostImages;

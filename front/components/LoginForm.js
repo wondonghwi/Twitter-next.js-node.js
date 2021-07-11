@@ -1,21 +1,33 @@
 import React, { useCallback } from "react";
-import { Button, Form, Input } from "antd";
+import { Form, Input, Button } from "antd";
 import Link from "next/link";
 import styled from "styled-components";
-import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequestAction } from "../reducers/user";
+
+import useInput from "../hooks/useInput";
+import { LOG_IN_REQUEST } from "../reducers/user";
+
+const ButtonWrapper = styled.div`
+  margin-top: 10px;
+`;
+
+const FormWrapper = styled(Form)`
+  padding: 10px;
+`;
 
 const LoginForm = () => {
-  const { logInLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const { logInLoading } = useSelector((state) => state.user);
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
 
-  //TODO AntDesign에서는 e.preventDefault가 자동으로 적용돼있음
   const onSubmitForm = useCallback(() => {
-    dispatch(loginRequestAction({ email, password }));
-  }, [dispatch, email, password]);
+    console.log(email, password);
+    dispatch({
+      type: LOG_IN_REQUEST,
+      data: { email, password },
+    });
+  }, [email, password]);
 
   return (
     <FormWrapper onFinish={onSubmitForm}>
@@ -46,7 +58,7 @@ const LoginForm = () => {
           로그인
         </Button>
         <Link href="/signup">
-          <a href="">
+          <a>
             <Button>회원가입</Button>
           </a>
         </Link>
@@ -56,11 +68,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-const ButtonWrapper = styled.div`
-  margin-top: 10px;
-`;
-
-const FormWrapper = styled(Form)`
-  padding: 10px;
-`;
