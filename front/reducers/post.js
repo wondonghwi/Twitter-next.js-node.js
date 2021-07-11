@@ -1,6 +1,5 @@
 import shortId from "shortid";
 import faker from "faker";
-
 import produce from "../util/produce";
 
 export const initialState = {
@@ -23,7 +22,7 @@ export const initialState = {
 
 export const generateDummyPost = (number) =>
   Array(number)
-    .fill()
+    .fill(1)
     .map(() => ({
       id: shortId.generate(),
       User: {

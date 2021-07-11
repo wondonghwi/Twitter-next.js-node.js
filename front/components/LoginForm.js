@@ -22,12 +22,11 @@ const LoginForm = () => {
   const [password, onChangePassword] = useInput("");
 
   const onSubmitForm = useCallback(() => {
-    console.log(email, password);
     dispatch({
       type: LOG_IN_REQUEST,
       data: { email, password },
     });
-  }, [email, password]);
+  }, [dispatch, email, password]);
 
   return (
     <FormWrapper onFinish={onSubmitForm}>
@@ -57,6 +56,7 @@ const LoginForm = () => {
         <Button type="primary" htmlType="submit" loading={logInLoading}>
           로그인
         </Button>
+        {}
         <Link href="/signup">
           <a>
             <Button>회원가입</Button>

@@ -29,7 +29,7 @@ const PostForm = () => {
         text,
       },
     });
-  }, []);
+  }, [dispatch, text]);
 
   const onChangeText = useCallback((e) => {
     setText(e.target.value);
@@ -56,7 +56,7 @@ const PostForm = () => {
           htmlType="submit"
           loading={addPostLoading}
         >
-          짹짹
+          트위터
         </Button>
       </div>
       <div>

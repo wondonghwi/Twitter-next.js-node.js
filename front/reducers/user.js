@@ -68,15 +68,6 @@ const dummyUser = (data) => ({
   ],
 });
 
-export const loginRequestAction = (data) => ({
-  type: LOG_IN_REQUEST,
-  data,
-});
-
-export const logoutRequestAction = () => ({
-  type: LOG_OUT_REQUEST,
-});
-
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
@@ -112,8 +103,8 @@ const reducer = (state = initialState, action) =>
         break;
       case LOG_IN_REQUEST:
         draft.logInLoading = true;
-        draft.logInError = null;
         draft.logInDone = false;
+        draft.logInError = null;
         break;
       case LOG_IN_SUCCESS:
         draft.logInLoading = false;
@@ -132,7 +123,7 @@ const reducer = (state = initialState, action) =>
       case LOG_OUT_SUCCESS:
         draft.logOutLoading = false;
         draft.logOutDone = true;
-        draft.me = null;
+        draft.me = null; //me의 데이터 없애기
         break;
       case LOG_OUT_FAILURE:
         draft.logOutLoading = false;

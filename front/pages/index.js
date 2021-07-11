@@ -13,6 +13,7 @@ const Home = () => {
   const { mainPosts, hasMorePosts, loadPostsLoading } = useSelector(
     (state) => state.post
   );
+
   //초기에 데이터한번 불러오기
   useEffect(() => {
     dispatch({

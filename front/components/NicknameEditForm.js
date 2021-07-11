@@ -15,7 +15,7 @@ const NicknameEditForm = () => {
       type: CHANGE_NICKNAME_REQUEST,
       data: nickname,
     });
-  }, [nickname]);
+  }, [dispatch, nickname]);
 
   return (
     <Form
