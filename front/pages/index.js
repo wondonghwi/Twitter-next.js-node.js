@@ -5,6 +5,7 @@ import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
 import AppLayout from "../components/AppLayout";
 import { LOAD_POSTS_REQUEST } from "../reducers/post";
+import useInfinityScroll from "../hooks/useInfinityScroll";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,35 +20,18 @@ const Home = () => {
     });
   }, [dispatch]);
 
-  //스크롤에 따라서 인피니티스크롤 실행하는 코드
-  useEffect(() => {
-    function onScroll() {
-      if (
-        window.scrollY + document.documentElement.clientHeight >
-        document.documentElement.scrollHeight - 300
-        // window.scrollY + document.documentElement.clientHeight ===
-        // document.documentElement.scrollHeight
-      ) {
-        // 처음부터 request를 안보내기위해 && !loadPostsLoading 코드추가
-        if (hasMorePosts && !loadPostsLoading) {
-          dispatch({
-            type: LOAD_POSTS_REQUEST,
-            data: mainPosts[mainPosts.length - 1].id,
-          });
-        }
-      }
-    }
-    window.addEventListener("scroll", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [dispatch, hasMorePosts, loadPostsLoading, mainPosts]);
+  //TODO 인피니티스크롤 커스텀 훅
+  useInfinityScroll({
+    mainPosts,
+    hasMorePosts,
+    loadPostsLoading,
+  });
 
   return (
     <AppLayout>
       {me && <PostForm />}
-      {mainPosts.map((c) => (
-        <PostCard key={c.id} post={c} />
+      {mainPosts.map((post) => (
+        <PostCard key={post.id} post={post} />
       ))}
     </AppLayout>
   );

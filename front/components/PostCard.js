@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import { Card, Button, Avatar, List, Comment, Popover } from "antd";
-import PropTypes from "prop-types";
 import {
   RetweetOutlined,
   HeartTwoTone,
@@ -11,24 +10,19 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Link from "next/link";
-
 import CommentForm from "./CommentForm";
 import PostCardContent from "./PostCardContent";
 import PostImages from "./PostImages";
 import FollowButton from "./FollowButton";
 import { REMOVE_POST_REQUEST } from "../reducers/post";
 
-const CardWrapper = styled.div`
-  margin-bottom: 20px;
-`;
-
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
   const { removePostLoading } = useSelector((state) => state.post);
-  const [commentFormOpened, setCommentFormOpened] = useState(false);
-  const [liked, setLiked] = useState(false);
   const { me } = useSelector((state) => state.user);
   const id = me && me.id;
+  const [commentFormOpened, setCommentFormOpened] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   const onToggleComment = useCallback(() => {
     setCommentFormOpened((prev) => !prev);
@@ -43,7 +37,7 @@ const PostCard = ({ post }) => {
       type: REMOVE_POST_REQUEST,
       data: post.id,
     });
-  }, []);
+  }, [dispatch, post.id]);
 
   return (
     <CardWrapper key={post.id}>
@@ -65,6 +59,7 @@ const PostCard = ({ post }) => {
             key="ellipsis"
             content={
               <Button.Group>
+                {/*TODO 수정필요*/}
                 {id && post.UserId === id ? (
                   <>
                     <Button>수정</Button>
@@ -126,3 +121,7 @@ const PostCard = ({ post }) => {
 };
 
 export default PostCard;
+
+const CardWrapper = styled.div`
+  margin-bottom: 20px;
+`;
