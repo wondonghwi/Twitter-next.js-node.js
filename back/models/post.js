@@ -15,10 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   Post.association = (db) => {
     db.Post.belongsTo(db.User);
-    db.Post.belongsToMany(db.HashTag);
+    db.Post.belongsToMany(db.HashTag, { through: "PostHashtag" });
     db.Post.hasMany(db.Comment);
     db.Post.hasMany(db.Image);
     db.Post.belongsToMany(db.User, { through: "Like", as: "Liked" });
+    db.Post.belongsTo(db.Post, { as: "Retweet" });
   };
   return Post;
 };

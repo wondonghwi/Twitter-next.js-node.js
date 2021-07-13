@@ -2,6 +2,9 @@
   "name": "react-nodebird-back",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "dev" : "nodemon app"
+  },
   "author": "wondonghwi",
   "license": "MIT",
   "dependencies": {
@@ -9,5 +12,8 @@
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
