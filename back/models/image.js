@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       collate: "utf8_general_ci", //이모티콘 저장
     }
   );
-  Image.association = (db) => {};
+  Image.association = (db) => {
+    db.Image.belongsTo(db.User);
+  };
   return Image;
 };

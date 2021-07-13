@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       collate: "utf8_general_ci", //한글저장
     }
   );
-  User.association = (db) => {};
+  User.association = (db) => {
+    db.User.hasMany(db.Post);
+    db.User.hasMany(db.Comment);
+    db.User.belongsToMany(db.Post, { through: "Like", as: "Likers" });
+  };
   return User;
 };
