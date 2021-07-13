@@ -1,0 +1,13 @@
+{
+  "name": "react-nodebird-back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "wondonghwi",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}
