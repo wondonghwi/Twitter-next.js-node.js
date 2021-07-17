@@ -6,6 +6,8 @@ import LoginForm from "./LoginForm";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
+//TODO _app.js와 별개로 일부만 (사용한애들만) 공통
+
 const AppLayout = ({ children }) => {
   const { me } = useSelector((state) => state.user);
 
