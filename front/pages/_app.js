@@ -3,7 +3,7 @@ import Head from "next/head";
 import wrapper from "../store/configStore";
 
 //TODO _app.js는 모든 pages들의 공통 부분
-
+//next-redux-wrapper 에서 자동으로 Provider store={store}를 해줘서 적으면 안됨!
 function MyApp({ Component, pageProps }) {
   return (
     <>

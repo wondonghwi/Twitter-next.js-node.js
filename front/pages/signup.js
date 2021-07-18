@@ -24,7 +24,8 @@ const Signup = () => {
     [password]
   );
 
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState(false);
+  //term -> 약관동의체크박스
   const [termError, setTermError] = useState(false);
   const onChangeTerm = useCallback((e) => {
     setTermError(false);
