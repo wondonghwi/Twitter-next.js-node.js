@@ -23,11 +23,10 @@ const PostForm = () => {
   }, [addPostDone]);
 
   const onSubmitForm = useCallback(() => {
+    //TODO 순서 1
     dispatch({
       type: ADD_POST_REQUEST,
-      data: {
-        text,
-      },
+      data: text,
     });
   }, [dispatch, text]);
 
@@ -56,7 +55,7 @@ const PostForm = () => {
           htmlType="submit"
           loading={addPostLoading}
         >
-          트위터
+          입력
         </Button>
       </div>
       <div>

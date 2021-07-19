@@ -19,10 +19,9 @@ const CommentForm = ({ post }) => {
   }, [addCommentDone, setCommentText]);
 
   const onSubmitComment = useCallback(() => {
-    console.log(commentText , id , post.id);
     dispatch({
       type: ADD_COMMENT_REQUEST,
-      data: { content: commentText, userId: id, postId: post.id },
+      data: { content: commentText, postId: post.id, userId: id },
     });
   }, [commentText, dispatch, id, post.id]);
 
@@ -34,16 +33,11 @@ const CommentForm = ({ post }) => {
           value={commentText}
           onChange={onChangeCommentText}
         />
-        <div style={{ position: "absolute", right: 0, bottom: -40 }}
-        >
-        <Button
-          type="primary"
-          htmlType="submit"
-          loading={addCommentLoading}
-        >
-          {/*TODO 확인 안눌리는거 체크*/}
-          확인
-        </Button>
+        <div style={{ position: "absolute", right: 0, bottom: -40, zIndex: 1 }}>
+          <Button type="primary" htmlType="submit" loading={addCommentLoading}>
+            {/*TODO 확인 안눌리는거 체크*/}
+            확인
+          </Button>
         </div>
       </Form.Item>
     </Form>

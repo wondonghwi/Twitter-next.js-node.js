@@ -20,7 +20,6 @@ const PostCard = ({ post }) => {
   const dispatch = useDispatch();
   const { removePostLoading } = useSelector((state) => state.post);
   const { me } = useSelector((state) => state.user);
-  // console.log(post)
   const id = me?.id;
   const [commentFormOpened, setCommentFormOpened] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -60,7 +59,7 @@ const PostCard = ({ post }) => {
             key="ellipsis"
             content={
               <Button.Group>
-                  {id && post.User.id === id ? (
+                {id && post.User.id === id ? (
                   <>
                     <Button>수정</Button>
                     <Button

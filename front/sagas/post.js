@@ -52,10 +52,12 @@ function addPostAPI(data) {
 }
 
 function* addPost(action) {
+  // console.log(action);
   try {
     // const result = yield call(addPostAPI, action.data);
-    // yield delay(1000);
+    yield delay(1000);
     const id = shortId.generate();
+    //TODO 순서 3
     yield put({
       type: ADD_POST_SUCCESS,
       data: {
@@ -126,6 +128,7 @@ function* watchLoadPosts() {
 }
 
 function* watchAddPost() {
+  //TODO 순서 2
   yield takeLatest(ADD_POST_REQUEST, addPost);
 }
 

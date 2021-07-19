@@ -2,6 +2,7 @@ import shortId from "shortid";
 import faker from "faker";
 import produce from "../util/produce";
 
+//TODO 순서 6 함수가 호출되면서 mainPosts에 값추가
 export const initialState = {
   mainPosts: [],
   imagePaths: [],
@@ -62,16 +63,17 @@ export const ADD_COMMENT_REQUEST = "ADD_COMMENT_REQUEST";
 export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
 
-export const addPost = (data) => ({
-  type: ADD_POST_REQUEST,
-  data,
-});
+// export const addPost = (data) => ({
+//   type: ADD_POST_REQUEST,
+//   data,
+// });
+//
+// export const addComment = (data) => ({
+//   type: ADD_COMMENT_REQUEST,
+//   data,
+// });
 
-export const addComment = (data) => ({
-  type: ADD_COMMENT_REQUEST,
-  data,
-});
-
+//TODO 순서 5 action.data를 data로 받고 함수호출
 const dummyPost = (data) => ({
   id: data.id,
   content: data.content,
@@ -115,7 +117,9 @@ const reducer = (state = initialState, action) =>
         draft.addPostDone = false;
         draft.addPostError = null;
         break;
+      //TODO 순서 4
       case ADD_POST_SUCCESS:
+        // console.log(action.data);
         draft.addPostLoading = false;
         draft.addPostDone = true;
         draft.mainPosts.unshift(dummyPost(action.data));
