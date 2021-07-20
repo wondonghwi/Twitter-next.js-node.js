@@ -30,7 +30,7 @@ app.get("/posts", (req, res) => {
   ]);
 });
 
-app.use("/post", postRouter);
+app.use("/post", postRouter); // -> 중복된 post를 prefix로 뽑아줌
 
 app.listen(3065, () => {
   console.log("서버 실행 중");

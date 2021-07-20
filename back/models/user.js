@@ -4,12 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       //id가 기본적으로 들어있다.
       email: {
-        type: DataTypes.STRING(20),
-        allowNull: false, //필수
+        type: DataTypes.STRING(30),
+        allowNull: false, // false -> 필수
         unique: true, //고유한값
       },
       nickname: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(30),
         allowNull: false, //필수
       },
       password: {
@@ -22,19 +22,19 @@ module.exports = (sequelize, DataTypes) => {
       collate: "utf8_general_ci", //한글저장
     }
   );
-  User.association = (db) => {
+  User.associate = (db) => {
     db.User.hasMany(db.Post);
     db.User.hasMany(db.Comment);
-    db.User.belongsToMany(db.Post, { through: "Like", as: "Likers" });
-    db.User.belongsToMany(db.User, {
-      through: "Follow",
-      as: "Followers",
-      foreignKey: "FollowingId",
-    });
+    db.User.belongsToMany(db.Post, { through: "Like", as: "Liked" });
     db.User.belongsToMany(db.User, {
       through: "Follow",
       as: "Followings",
       foreignKey: "FollowingId",
+    });
+    db.User.belongsToMany(db.User, {
+      through: "Follow",
+      as: "Followers",
+      foreignKey: "FollowerId",
     });
   };
   return User;
