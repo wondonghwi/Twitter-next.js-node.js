@@ -6,7 +6,7 @@ import produce from "../util/produce";
 export const initialState = {
   mainPosts: [],
   imagePaths: [],
-  hasMorePosts: true,
+  hasMorePosts: true, // 포스트가 더 있는지 확인
   loadPostsLoading: false,
   loadPostsDone: false,
   loadPostsError: null,
@@ -148,11 +148,12 @@ const reducer = (state = initialState, action) =>
         draft.addCommentError = null;
         break;
       case ADD_COMMENT_SUCCESS: {
-        const post = draft.mainPosts.find((v) => v.id === action.data.postId);
-        post.Comments.unshift(dummyComment(action.data.content));
         draft.addCommentLoading = false;
         draft.addCommentDone = true;
+        const post = draft.mainPosts.find((v) => v.id === action.data.postId);
+        post.Comments.unshift(dummyComment(action.data.content));
         break;
+        //immer를 사용안했을 경우
         // const postIndex = state.mainPosts.findIndex((v) => v.id === action.data.postId);
         // const post = { ...state.mainPosts[postIndex] };
         // post.Comments = [dummyComment(action.data.content), ...post.Comments];
