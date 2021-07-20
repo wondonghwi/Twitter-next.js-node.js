@@ -3,11 +3,13 @@ const cors = require("cors");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+const dotenv = require("dotenv");
 const postRouter = require("./routes/post");
 const userRouter = require("./routes/user");
 const db = require("./models");
 const passportConfig = require("./passport");
 
+dotenv.config(); // -> .env파일을 쓰기위한 라이브러리
 const app = express();
 db.sequelize
   .sync()
@@ -25,12 +27,12 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   session({
     saveUninitialized: false,
     resave: false,
-    secret: "nodebirdsecret",
+    secret: process.env.COOKIE_SECRET,
   })
 );
 app.use(passport.initialize());

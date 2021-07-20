@@ -20,6 +20,7 @@ import {
 } from "../reducers/user";
 
 function logInAPI(data) {
+  console.log(data);
   return axios.post("/user/login", data);
 }
 
