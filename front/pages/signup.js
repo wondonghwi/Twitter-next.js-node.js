@@ -9,11 +9,17 @@ import { useRouter } from "next/router";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const { signUpLoading, signUpDone, signUpError } = useSelector(
+  const { signUpLoading, signUpDone, signUpError, me } = useSelector(
     (state) => state.user
   );
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (me && me.id) {
+      router.replace("/");
+    }
+  }, [me, router]);
 
   useEffect(() => {
     if (signUpDone) {
