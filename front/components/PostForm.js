@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect, useRef } from "react";
 import { Form, Input, Button, Image } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 
-import { ADD_POST_REQUEST } from "../reducers/post";
+import { ADD_POST_REQUEST, addPost } from "../reducers/post";
 
 const PostForm = () => {
   const dispatch = useDispatch();
@@ -24,10 +24,7 @@ const PostForm = () => {
 
   const onSubmitForm = useCallback(() => {
     //TODO 순서 1
-    dispatch({
-      type: ADD_POST_REQUEST,
-      data: text,
-    });
+    dispatch(addPost(text));
   }, [dispatch, text]);
 
   const onChangeText = useCallback((e) => {
