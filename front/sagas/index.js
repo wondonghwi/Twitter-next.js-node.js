@@ -12,6 +12,7 @@ import axios from "axios";
 // -> fork : 비동기 함수 호출 (결과값 안기다림) , call : 동기 함수 호출 (결과값을 기다림)
 
 axios.defaults.baseURL = "http://localhost:3065";
+axios.defaults.withCredentials = true;
 
 export default function* rootSaga() {
   yield all([fork(postSaga), fork(userSaga)]);

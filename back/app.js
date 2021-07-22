@@ -22,7 +22,8 @@ passportConfig();
 //미들웨어 -> 위치 중요
 app.use(
   cors({
-    origin: "*",
+    origin: true,
+    credentials: true,
   })
 );
 app.use(express.json());
