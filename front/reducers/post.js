@@ -68,11 +68,6 @@ export const addPost = (data) => ({
   data,
 });
 
-export const addComment = (data) => ({
-  type: ADD_COMMENT_REQUEST,
-  data,
-});
-
 // 이전 상태를 액션을 통해 다음 상태로 만들어내는 함수(불변성은 지키면서)
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -130,8 +125,8 @@ const reducer = (state = initialState, action) =>
       case ADD_COMMENT_SUCCESS: {
         draft.addCommentLoading = false;
         draft.addCommentDone = true;
-        const post = draft.mainPosts.find((v) => v.id === action.data.postId);
-        post.Comments.unshift(dummyComment(action.data.content));
+        const post = draft.mainPosts.find((v) => v.id === action.data.PostId);
+        post.Comments.unshift(action.data);
         break;
         //immer를 사용안했을 경우
         // const postIndex = state.mainPosts.findIndex((v) => v.id === action.data.postId);

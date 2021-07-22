@@ -1,5 +1,4 @@
 import axios from "axios";
-import shortId from "shortid";
 import {
   all,
   delay,
@@ -7,6 +6,7 @@ import {
   put,
   takeLatest,
   throttle,
+  call,
 } from "redux-saga/effects";
 
 import {
@@ -109,7 +109,7 @@ function* addComment(action) {
     const result = yield call(addCommentAPI, action.data);
     yield put({
       type: ADD_COMMENT_SUCCESS,
-      data: action.data,
+      data: result.data,
     });
   } catch (err) {
     yield put({
