@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
+    //TODO 지질문 req.user를 console.log로 찍었을때 에러 발생
     if (req.user) {
       const fullUserWithoutPassword = await User.findOne({
         where: { id: req.user.id },

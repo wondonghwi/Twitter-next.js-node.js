@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       //id가 기본적으로 들어있다.
       content: {
         type: DataTypes.TEXT,
-        allowDots: false,
+        allowNull: false,
       },
     },
     {

@@ -94,7 +94,6 @@ const reducer = (state = initialState, action) =>
         break;
       //TODO 순서 4
       case ADD_POST_SUCCESS:
-        // console.log(action.data);
         draft.addPostLoading = false;
         draft.addPostDone = true;
         draft.mainPosts.unshift(action.data);

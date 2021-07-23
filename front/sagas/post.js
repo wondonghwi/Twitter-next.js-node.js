@@ -3,10 +3,10 @@ import {
   all,
   delay,
   fork,
+  call,
   put,
   takeLatest,
   throttle,
-  call,
 } from "redux-saga/effects";
 
 import {
@@ -58,16 +58,16 @@ function* addPost(action) {
     yield put({
       type: ADD_POST_SUCCESS,
       data: {
-        id,
         content: result.data,
       },
     });
     yield put({
       type: ADD_POST_TO_ME,
-      data: id,
+      data: result.data.id,
     });
   } catch (err) {
     console.error(err);
+    console.log("여기 에러?");
     yield put({
       type: ADD_POST_FAILURE,
       data: err.response.data,

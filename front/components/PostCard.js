@@ -39,6 +39,8 @@ const PostCard = ({ post }) => {
     });
   }, [dispatch, post.id]);
 
+  console.log(post.Images);
+
   return (
     <CardWrapper key={post.id}>
       <Card
