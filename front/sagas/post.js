@@ -54,12 +54,9 @@ function addPostAPI(data) {
 function* addPost(action) {
   try {
     const result = yield call(addPostAPI, action.data);
-    //TODO 순서 3
     yield put({
       type: ADD_POST_SUCCESS,
-      data: {
-        content: result.data,
-      },
+      data: result.data,
     });
     yield put({
       type: ADD_POST_TO_ME,
@@ -67,7 +64,6 @@ function* addPost(action) {
     });
   } catch (err) {
     console.error(err);
-    console.log("여기 에러?");
     yield put({
       type: ADD_POST_FAILURE,
       data: err.response.data,
@@ -124,7 +120,6 @@ function* watchLoadPosts() {
 }
 
 function* watchAddPost() {
-  //TODO 순서 2
   yield takeLatest(ADD_POST_REQUEST, addPost);
 }
 

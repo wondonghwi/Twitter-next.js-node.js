@@ -23,7 +23,6 @@ const PostForm = () => {
   }, [addPostDone]);
 
   const onSubmitForm = useCallback(() => {
-    //TODO 순서 1
     dispatch(addPost(text));
   }, [dispatch, text]);
 
