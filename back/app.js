@@ -5,9 +5,11 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const dotenv = require("dotenv");
 const postRouter = require("./routes/post");
+const postsRouter = require("./routes/posts");
 const userRouter = require("./routes/user");
 const db = require("./models");
 const passportConfig = require("./passport");
+const morgan = require("morgan");
 
 dotenv.config(); // -> .env파일을 쓰기위한 라이브러리
 const app = express();
@@ -20,6 +22,7 @@ db.sequelize
 passportConfig();
 
 //미들웨어 -> 위치 중요
+app.use(morgan("dev"));
 app.use(
   cors({
     origin: true,
@@ -43,24 +46,8 @@ app.get("/", (req, res) => {
   res.send("hello express");
 });
 
-app.get("/posts", (req, res) => {
-  res.json([
-    {
-      id: 1,
-      content: "hello",
-    },
-    {
-      id: 2,
-      content: "hello2",
-    },
-    {
-      id: 3,
-      content: "hello3",
-    },
-  ]);
-});
-
 app.use("/post", postRouter); // -> 중복된 post를 prefix로 뽑아줌
+app.use("/posts", postsRouter); // -> 중복된 posts를 prefix로 뽑아줌
 app.use("/user", userRouter); // -> 중복된 user를 prefix로 뽑아줌
 
 app.listen(3065, () => {

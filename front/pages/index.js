@@ -24,13 +24,6 @@ const Home = () => {
     });
   }, [dispatch]);
 
-  //초기에 데이터한번 불러오기
-  useEffect(() => {
-    dispatch({
-      type: LOAD_POSTS_REQUEST,
-    });
-  }, [dispatch]);
-
   //TODO 인피니티스크롤 커스텀 훅
   useInfinityScroll({
     mainPosts,
