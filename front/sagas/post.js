@@ -71,14 +71,12 @@ function* likePost(action) {
 }
 
 function unLikePostAPI(data) {
-  console.log(data);
   return axios.delete(`/post/${data}/like`);
 }
 
 function* unLikePost(action) {
   try {
     const result = yield call(unLikePostAPI, action.data);
-    console.log(result);
     yield put({
       type: UNLIKE_POST_SUCCESS,
       data: result.data,

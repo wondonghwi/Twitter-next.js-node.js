@@ -197,7 +197,6 @@ function* signUp(action) {
 }
 
 function followAPI(data) {
-  console.log(data);
   return axios.patch(`/user/${data}/follow`);
 }
 
