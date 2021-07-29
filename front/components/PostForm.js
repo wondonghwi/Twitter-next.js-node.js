@@ -1,22 +1,40 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Button, Form, Image, Input } from "antd";
+import React, { useCallback, useEffect, useRef } from "react";
+import { Button, Form, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 
 import {
   ADD_POST_REQUEST,
-  addPost,
-  REMOVE_IMAGE,
   UPLOAD_IMAGES_REQUEST,
+  REMOVE_IMAGE,
 } from "../reducers/post";
+import useInput from "../hooks/useInput";
 
 const PostForm = () => {
+  const { imagePaths, addPostDone } = useSelector((state) => state.post);
   const dispatch = useDispatch();
-  const [text, setText] = useState("");
-  const { imagePaths, addPostLoading, addPostDone } = useSelector(
-    (state) => state.post
-  );
+  const [text, onChangeText, setText] = useInput("");
 
-  console.log(imagePaths);
+  useEffect(() => {
+    if (addPostDone) {
+      setText("");
+    }
+  }, [addPostDone, setText]);
+
+  const onSubmit = useCallback(() => {
+    if (!text || !text.trim()) {
+      return alert("게시글을 작성하세요.");
+    }
+    const formData = new FormData();
+    imagePaths.forEach((p) => {
+      formData.append("image", p);
+    });
+    formData.append("content", text);
+    return dispatch({
+      type: ADD_POST_REQUEST,
+      data: formData,
+    });
+  }, [text, imagePaths, dispatch]);
 
   const imageInput = useRef();
   const onClickImageUpload = useCallback(() => {
@@ -38,48 +56,27 @@ const PostForm = () => {
     [dispatch]
   );
 
-  useEffect(() => {
-    if (addPostDone) {
-      setText("");
-    }
-  }, [addPostDone]);
-
-  const onSubmitForm = useCallback(() => {
-    if (!text || !text.trim()) {
-      return alert("게시글을 작성하세요");
-    }
-    const formData = new FormData();
-    imagePaths.forEach((p) => {
-      formData.append("image", p);
-    });
-    dispatch({
-      type: ADD_POST_REQUEST,
-      data: formData,
-    });
-  }, [dispatch, imagePaths]);
-
-  const onChangeText = useCallback((e) => {
-    setText(e.target.value);
-  }, []);
-
-  const onRemoveImage = useCallback(() => {
-    dispatch({
-      type: REMOVE_IMAGE,
-      data: index,
-    });
-  }, [dispatch]);
+  const onRemoveImage = useCallback(
+    (index) => () => {
+      dispatch({
+        type: REMOVE_IMAGE,
+        data: index,
+      });
+    },
+    [dispatch]
+  );
 
   return (
     <Form
       style={{ margin: "10px 0 20px" }}
       encType="multipart/form-data"
-      onFinish={onSubmitForm}
+      onFinish={onSubmit}
     >
       <Input.TextArea
-        maxLength={140}
-        placeholder="어떤 신기한 일이 있었나요?"
         value={text}
         onChange={onChangeText}
+        maxLength={140}
+        placeholder="어떤 신기한 일이 있었나요?"
       />
       <div>
         <input
@@ -91,17 +88,12 @@ const PostForm = () => {
           onChange={onChangeImages}
         />
         <Button onClick={onClickImageUpload}>이미지 업로드</Button>
-        <Button
-          type="primary"
-          style={{ float: "right" }}
-          htmlType="submit"
-          loading={addPostLoading}
-        >
-          입력
+        <Button type="primary" style={{ float: "right" }} htmlType="submit">
+          확인
         </Button>
       </div>
       <div>
-        {imagePaths.map((v) => (
+        {imagePaths.map((v, i) => (
           <div key={v} style={{ display: "inline-block" }}>
             <Image
               src={`http://localhost:3065/${v}`}

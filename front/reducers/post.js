@@ -160,6 +160,7 @@ const reducer = (state = initialState, action) =>
         draft.mainPosts = draft.mainPosts.filter(
           (v) => v.id !== action.data.PostId
         );
+        draft.imagePaths = [];
         break;
       case REMOVE_POST_FAILURE:
         draft.removePostLoading = false;
