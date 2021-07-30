@@ -20,7 +20,7 @@ const PostImages = ({ images }) => {
       <>
         <Image
           role="presentation"
-          src={`http://localhost:3065${images[0].src}`}
+          src={`http://localhost:3065/${images[0].src}`}
           width={200}
           height={200}
           alt={images[0].src}
@@ -36,7 +36,7 @@ const PostImages = ({ images }) => {
         <div>
           <Image
             role="presentation"
-            src={`http://localhost:3065${images[0].src}`}
+            src={`http://localhost:3065/${images[0].src}`}
             alt={images[0].src}
             width={200}
             height={200}
@@ -44,7 +44,7 @@ const PostImages = ({ images }) => {
           />
           <Image
             role="presentation"
-            src={`http://localhost:3065${images[1].src}`}
+            src={`http://localhost:3065/${images[1].src}`}
             alt={images[1].src}
             width={200}
             height={200}
@@ -60,7 +60,7 @@ const PostImages = ({ images }) => {
       <div>
         <Image
           role="presentation"
-          src={`http://localhost:3065${images[0].src}`}
+          src={`http://localhost:3065/${images[0].src}`}
           alt={images[0].src}
           width={200}
           height={200}
