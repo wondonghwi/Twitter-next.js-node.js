@@ -80,7 +80,7 @@ const reducer = (state = initialState, action) =>
         draft.retweetError = null;
         break;
       case RETWEET_SUCCESS:
-        draft.imagePaths = action.data;
+        draft.mainPosts.unshift(action.data);
         draft.retweetLoading = false;
         draft.retweetDone = true;
         break;
