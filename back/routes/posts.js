@@ -1,12 +1,20 @@
 const express = require("express");
 const { Post, User, Image, Comment } = require("../models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
 //GET posts (여러개 가져오는경우 사용) - 단수 / 복수 구분
 router.get("/", async (req, res, next) => {
+  // GET /posts
   try {
+    const where = {};
+    if (parseInt(req.query.lastId, 10)) {
+      // 초기 로딩이 아닐 때
+      where.id = { [Op.lt]: parseInt(req.query.lastId, 10) };
+    }
     const posts = await Post.findAll({
+      where,
       limit: 10,
       order: [
         ["createdAt", "DESC"],
@@ -26,12 +34,11 @@ router.get("/", async (req, res, next) => {
             {
               model: User,
               attributes: ["id", "nickname"],
-              order: [["createdAt , DESC"]],
             },
           ],
         },
         {
-          model: User,
+          model: User, // 좋아요 누른 사람
           as: "Likers",
           attributes: ["id"],
         },
@@ -52,9 +59,8 @@ router.get("/", async (req, res, next) => {
     });
     res.status(200).json(posts);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     next(error);
   }
 });
-
 module.exports = router;

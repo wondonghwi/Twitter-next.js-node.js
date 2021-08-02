@@ -15,9 +15,10 @@ const useInfinityScroll = ({ mainPosts, hasMorePosts, loadPostsLoading }) => {
       ) {
         // 처음부터 request를 안보내기위해 && !loadPostsLoading 코드추가
         if (hasMorePosts && !loadPostsLoading) {
+          const lastId = mainPosts[mainPosts.length - 1]?.id;
           dispatch({
             type: LOAD_POSTS_REQUEST,
-            // data: mainPosts[mainPosts.length - 1].id,
+            lastId,
           });
         }
       }
