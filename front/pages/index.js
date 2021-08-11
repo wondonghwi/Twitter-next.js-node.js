@@ -7,6 +7,7 @@ import { LOAD_POSTS_REQUEST } from "../reducers/post";
 import useInfinityScroll from "../hooks/useInfinityScroll";
 import { LOAD_USER_REQUEST } from "../reducers/user";
 import wrapper from "../store/configStore";
+import { END } from "redux-saga";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -38,14 +39,18 @@ const Home = () => {
 };
 
 //화면이 랜더링되기 전에, Home보다 먼저 실행!
-export const getServerSideProps = wrapper.getServerSideProps((context) => {
-  console.log(context);
-  context.store.dispatch({
-    type: LOAD_USER_REQUEST,
-  });
-  context.store.dispatch({
-    type: LOAD_POSTS_REQUEST,
-  });
-});
+export const getServerSideProps = wrapper.getServerSideProps(
+  async (context) => {
+    console.log(context);
+    context.store.dispatch({
+      type: LOAD_USER_REQUEST,
+    });
+    context.store.dispatch({
+      type: LOAD_POSTS_REQUEST,
+    });
+    context.store.dispatch(END);
+    await context.store.sagaTask.toPromise();
+  }
+);
 
 export default Home;
