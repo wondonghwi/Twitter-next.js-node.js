@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
 import AppLayout from "../components/AppLayout";
 import { LOAD_POSTS_REQUEST } from "../reducers/post";
 import useInfinityScroll from "../hooks/useInfinityScroll";
 import { LOAD_USER_REQUEST } from "../reducers/user";
+import wrapper from "../store/configStore";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,15 +19,6 @@ const Home = () => {
       alert(retweetError);
     }
   }, [retweetError]);
-
-  useEffect(() => {
-    dispatch({
-      type: LOAD_USER_REQUEST,
-    });
-    dispatch({
-      type: LOAD_POSTS_REQUEST,
-    });
-  }, [dispatch]);
 
   //TODO 인피니티스크롤 커스텀 훅
   useInfinityScroll({
@@ -45,5 +36,16 @@ const Home = () => {
     </AppLayout>
   );
 };
+
+//화면이 랜더링되기 전에, Home보다 먼저 실행!
+export const getServerSideProps = wrapper.getServerSideProps((context) => {
+  console.log(context);
+  context.store.dispatch({
+    type: LOAD_USER_REQUEST,
+  });
+  context.store.dispatch({
+    type: LOAD_POSTS_REQUEST,
+  });
+});
 
 export default Home;
