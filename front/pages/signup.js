@@ -4,8 +4,12 @@ import { Button, Checkbox, Form, Input } from "antd";
 import useInput from "../hooks/useInput";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { SIGN_UP_REQUEST } from "../reducers/user";
+import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from "../reducers/user";
 import { useRouter } from "next/router";
+import wrapper from "../store/configStore";
+import axios from "axios";
+import { LOAD_POSTS_REQUEST } from "../reducers/post";
+import { END } from "redux-saga";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -134,6 +138,26 @@ const Signup = () => {
 };
 
 export default Signup;
+
+//화면이 랜더링되기 전에 가장먼저 실행!
+export const getServerSideProps = wrapper.getServerSideProps(
+  async (context) => {
+    console.log("SignUp getServerSideProps start");
+    const cookie = context.req ? context.req.headers.cookie : "";
+    axios.defaults.headers.Cookie = "";
+    if (context.req && cookie) {
+      axios.defaults.headers.Cookie = cookie;
+    }
+    context.store.dispatch({
+      type: LOAD_MY_INFO_REQUEST,
+    });
+    context.store.dispatch({
+      type: LOAD_POSTS_REQUEST,
+    });
+    context.store.dispatch(END);
+    await context.store.sagaTask.toPromise();
+  }
+);
 
 const ErrorMessage = styled.div`
   color: red;

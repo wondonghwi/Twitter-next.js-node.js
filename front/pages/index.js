@@ -39,9 +39,9 @@ const Home = () => {
   );
 };
 
-//화면이 랜더링되기 전에, Home보다 먼저 실행!
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
+    console.log("Home getServerSideProps start");
     const cookie = context.req ? context.req.headers.cookie : "";
     axios.defaults.headers.Cookie = "";
     if (context.req && cookie) {
