@@ -15,7 +15,7 @@ const User = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
-  const { mainPosts, hasMorePosts, loadUserPostsLoading } = useSelector(
+  const { mainPosts, hasMorePosts, loadUPostsLoading } = useSelector(
     (state) => state.post
   );
   const { userInfo } = useSelector((state) => state.user);
@@ -26,7 +26,7 @@ const User = () => {
         window.pageYOffset + document.documentElement.clientHeight >
         document.documentElement.scrollHeight - 300
       ) {
-        if (hasMorePosts && !loadUserPostsLoading) {
+        if (hasMorePosts && !loadUPostsLoading) {
           dispatch({
             type: LOAD_USER_POSTS_REQUEST,
             lastId:
@@ -41,7 +41,14 @@ const User = () => {
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, [mainPosts.length, hasMorePosts, id]);
+  }, [
+    mainPosts.length,
+    hasMorePosts,
+    id,
+    loadUPostsLoading,
+    dispatch,
+    mainPosts,
+  ]);
 
   return (
     <AppLayout>
