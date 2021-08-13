@@ -4,16 +4,12 @@ import { Avatar, Card } from "antd";
 import { END } from "redux-saga";
 import Head from "next/head";
 import { useRouter } from "next/router";
-
 import axios from "axios";
-import {
-  LOAD_POSTS_REQUEST,
-  LOAD_USER_POSTS_REQUEST,
-} from "front/reducers/post";
-import { LOAD_MY_INFO_REQUEST, LOAD_USER_REQUEST } from "front/reducers/user";
-import PostCard from "front/components/PostCard";
-import AppLayout from "front/components/AppLayout";
+import AppLayout from "../../components/AppLayout";
+import PostCard from "../../components/PostCard";
 import wrapper from "../../store/configStore";
+import { LOAD_USER_POSTS_REQUEST } from "../../reducers/post";
+import { LOAD_MY_INFO_REQUEST, LOAD_USER_REQUEST } from "../../reducers/user";
 
 const User = () => {
   const dispatch = useDispatch();

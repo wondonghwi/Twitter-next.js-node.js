@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const postRouter = require("./routes/post");
 const postsRouter = require("./routes/posts");
 const userRouter = require("./routes/user");
+const hashtagRouter = require("./routes/hashtag");
 const db = require("./models");
 const path = require("path");
 const passportConfig = require("./passport");
@@ -51,6 +52,7 @@ app.get("/", (req, res) => {
 app.use("/post", postRouter); // -> 중복된 post를 prefix로 뽑아줌
 app.use("/posts", postsRouter); // -> 중복된 posts를 prefix로 뽑아줌
 app.use("/user", userRouter); // -> 중복된 user를 prefix로 뽑아줌
+app.use("/hashtag", hashtagRouter); // -> 중복된 hashtag를 prefix로 뽑아줌
 
 app.listen(3065, () => {
   console.log("서버 실행 중");
