@@ -10,6 +10,7 @@ import wrapper from "../store/configStore";
 import axios from "axios";
 import { END } from "redux-saga";
 import useSWR from "swr";
+import { fetcher } from "../utils/feture";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -17,12 +18,6 @@ const Profile = () => {
   const { me } = useSelector((state) => state.user);
   const [followersLimit, setFollowersLimit] = useState(3);
   const [followingsLimit, setFollowingsLimit] = useState(3);
-
-  //어떻게 swr을 불러올지 정하는
-  // 함수 -> url로 useSWR(args)가 들어옴
-  //withCredentials : true -> 서버와 도메인이 다를경우 쿠키전달을 위함
-  const fetcher = (url) =>
-    axios.get(url, { withCredentials: true }).then((result) => result.data);
 
   //팔로워
   const { data: followersData, error: followerError } = useSWR(

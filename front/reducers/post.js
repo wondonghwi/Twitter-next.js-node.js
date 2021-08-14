@@ -1,4 +1,4 @@
-import produce from "../util/produce";
+import produce from "../utils/produce";
 
 export const initialState = {
   mainPosts: [],

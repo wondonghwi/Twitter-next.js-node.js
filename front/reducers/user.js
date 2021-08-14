@@ -1,4 +1,4 @@
-import produce from "../util/produce";
+import produce from "../utils/produce";
 
 export const initialState = {
   loadMyInfoLoading: false, // 내 정보 가져오기 시도중
