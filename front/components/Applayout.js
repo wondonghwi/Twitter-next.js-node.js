@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Col, Input, Menu, Row } from "antd";
 import Link from "next/link";
 import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
+import Router from "next/router";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import useInput from "../hooks/useInput";
 
 //TODO _app.js와 별개로 일부만 (사용한애들만) 공통
 
 const AppLayout = ({ children }) => {
   const { me } = useSelector((state) => state.user);
+  const [searchInput, onChangeSearchInput] = useInput("");
+
+  const onSearch = useCallback(() => {
+    Router.push(`/hashtag/${searchInput}`);
+  }, [searchInput]);
 
   return (
     <div>
@@ -25,7 +32,12 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item key="searchInput">
-          <SearchInput enterButton />
+          <SearchInput
+            enterButton
+            value={searchInput}
+            onChange={onChangeSearchInput}
+            onSearch={onSearch}
+          />
         </Menu.Item>
         {!me && (
           <Menu.Item key="signup">
