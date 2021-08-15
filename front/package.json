@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
+    "@next/bundle-analyzer": "^11.1.0",
     "antd": "^4.6.6",
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.13.2",
