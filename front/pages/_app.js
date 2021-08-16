@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>NextNodeBird</title>
       </Head>
-      {/*이곳에 공통메뉴 사용가능 - Applayout과 별개로*/}
+      {/*이곳에 공통메뉴 사용가능 - AppLayout과 별개로*/}
       <Component {...pageProps} />
     </>
   );

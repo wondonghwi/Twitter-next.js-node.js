@@ -7,6 +7,7 @@ import axios from "axios";
 import { LOAD_HASHTAG_POSTS_REQUEST } from "../../reducers/post";
 import PostCard from "../../components/PostCard";
 import { LOAD_MY_INFO_REQUEST } from "../../reducers/user";
+import AppLayout from "../../components/AppLayout";
 import wrapper from "../../store/configStore";
 
 const Hashtag = () => {
@@ -48,11 +49,11 @@ const Hashtag = () => {
   ]);
 
   return (
-    <>
+    <AppLayout>
       {mainPosts.map((c) => (
         <PostCard key={c.id} post={c} />
       ))}
-    </>
+    </AppLayout>
   );
 };
 

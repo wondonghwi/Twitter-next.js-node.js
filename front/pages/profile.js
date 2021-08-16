@@ -3,7 +3,6 @@ import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import Head from "next/head";
 import NicknameEditForm from "../components/NicknameEditForm";
-import AppLayout from "../components/AppLayout";
 import FollowList from "../components/FollowList";
 import { LOAD_MY_INFO_REQUEST } from "../reducers/user";
 import wrapper from "../store/configStore";
@@ -12,6 +11,7 @@ import { END } from "redux-saga";
 import useSWR from "swr";
 import { fetcher } from "../utils/feture";
 import {backUrl} from "../config/config";
+import AppLayout from "../components/AppLayout";
 
 const Profile = () => {
   const dispatch = useDispatch();
