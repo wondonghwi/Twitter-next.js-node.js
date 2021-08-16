@@ -12,6 +12,8 @@ const db = require("./models");
 const path = require("path");
 const passportConfig = require("./passport");
 const morgan = require("morgan");
+const hpp = require('hpp');
+const helmet = require('helmet');
 
 dotenv.config(); // -> .env파일을 쓰기위한 라이브러리
 const app = express();
@@ -24,7 +26,13 @@ db.sequelize
 passportConfig();
 
 //미들웨어 -> 위치 중요
-app.use(morgan("dev"));
+if (process.env.NODE_ENV === 'production') {
+    app.use(morgan('combined'));
+    app.use(hpp());
+    app.use(helmet())
+} else {
+    app.use(morgan("dev"));
+}
 app.use(
   cors({
     origin: true,
@@ -54,6 +62,6 @@ app.use("/posts", postsRouter); // -> 중복된 posts를 prefix로 뽑아줌
 app.use("/user", userRouter); // -> 중복된 user를 prefix로 뽑아줌
 app.use("/hashtag", hashtagRouter); // -> 중복된 hashtag를 prefix로 뽑아줌
 
-app.listen(3065, () => {
+app.listen(80, () => {
   console.log("서버 실행 중");
 });
