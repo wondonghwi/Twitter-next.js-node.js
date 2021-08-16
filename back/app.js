@@ -35,7 +35,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 app.use(
   cors({
-    origin: true,
+    // origin: true,
+    origin: ['http://localhost:3060','http://13.124.217.22/'],
     credentials: true,
   })
 );
