@@ -9,3 +9,5 @@
 > Back-End
 - node.js
 - express
+
+> Aws EC2 배포 진행(중)
