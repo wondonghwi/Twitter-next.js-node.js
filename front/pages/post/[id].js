@@ -6,7 +6,6 @@ import axios from "axios";
 import { LOAD_MY_INFO_REQUEST } from "../../reducers/user";
 import { LOAD_POST_REQUEST } from "../../reducers/post";
 import { END } from "redux-saga";
-import AppLayout from "../../components/Applayout";
 import PostCard from "../../components/PostCard";
 import { useSelector } from "react-redux";
 import Head from "next/head";
@@ -17,7 +16,7 @@ const Post = () => {
   const { singlePost } = useSelector((state) => state.post);
 
   return (
-    <AppLayout>
+    <>
       <Head>
         <title>
           {singlePost.User.nickname}
@@ -40,7 +39,7 @@ const Post = () => {
         <meta property="og:url" content={`https://nodebird.com/post/${id}`} />
       </Head>
       <PostCard post={singlePost} />
-    </AppLayout>
+    </>
   );
 };
 

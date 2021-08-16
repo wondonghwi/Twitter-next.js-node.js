@@ -1,15 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import AppLayout from "../components/Applayout";
-import { Button, Checkbox, Form, Input } from "antd";
+import React, {useCallback, useEffect, useState} from "react";
+import {Button, Checkbox, Form, Input} from "antd";
 import useInput from "../hooks/useInput";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from "../reducers/user";
-import { useRouter } from "next/router";
+import {useDispatch, useSelector} from "react-redux";
+import {LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST} from "../reducers/user";
+import {useRouter} from "next/router";
 import wrapper from "../store/configStore";
 import axios from "axios";
-import { LOAD_POSTS_REQUEST } from "../reducers/post";
-import { END } from "redux-saga";
+import {END} from "redux-saga";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -73,7 +71,7 @@ const Signup = () => {
   }, [dispatch, email, nickname, password, passwordCheck, term]);
 
   return (
-    <AppLayout>
+    <>
       <Form onFinish={onSubmit} style={{ padding: 10 }}>
         <div>
           <label htmlFor="user-email">이메일</label>
@@ -133,7 +131,7 @@ const Signup = () => {
           </Button>
         </div>
       </Form>
-    </AppLayout>
+    </>
   );
 };
 

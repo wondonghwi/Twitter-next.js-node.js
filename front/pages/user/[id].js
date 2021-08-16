@@ -5,7 +5,6 @@ import { END } from "redux-saga";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
-import AppLayout from "../../components/AppLayout";
 import PostCard from "../../components/PostCard";
 import wrapper from "../../store/configStore";
 import { LOAD_USER_POSTS_REQUEST } from "../../reducers/post";
@@ -51,7 +50,7 @@ const User = () => {
   ]);
 
   return (
-    <AppLayout>
+    <>
       {userInfo && (
         <Head>
           <title>
@@ -106,7 +105,7 @@ const User = () => {
       {mainPosts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
-    </AppLayout>
+    </>
   );
 };
 
