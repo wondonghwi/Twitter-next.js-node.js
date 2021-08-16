@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
-import AppLayout from "../components/AppLayout";
 import { LOAD_POSTS_REQUEST } from "../reducers/post";
 import useInfinityScroll from "../hooks/useInfinityScroll";
 import { LOAD_MY_INFO_REQUEST } from "../reducers/user";
@@ -30,12 +29,12 @@ const Home = () => {
   });
 
   return (
-    <AppLayout>
+    <>
       {me && <PostForm />}
       {mainPosts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
-    </AppLayout>
+    </>
   );
 };
 

@@ -8,8 +8,6 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
 
-//TODO _app.js와 별개로 일부만 (사용한애들만) 공통
-
 const AppLayout = ({ children }) => {
   const { me } = useSelector((state) => state.user);
   const [searchInput, onChangeSearchInput] = useInput("");
