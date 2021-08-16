@@ -48,11 +48,11 @@ const Hashtag = () => {
   ]);
 
   return (
-    <AppLayout>
+    <>
       {mainPosts.map((c) => (
         <PostCard key={c.id} post={c} />
       ))}
-    </AppLayout>
+    </>
   );
 };
 
