@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { Button, Form, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
-
 import {
   ADD_POST_REQUEST,
   UPLOAD_IMAGES_REQUEST,

@@ -8,6 +8,7 @@ import { LOAD_MY_INFO_REQUEST } from "../reducers/user";
 import wrapper from "../store/configStore";
 import { END } from "redux-saga";
 import axios from "axios";
+import AppLayout from "../components/AppLayout";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,12 +30,12 @@ const Home = () => {
   });
 
   return (
-    <>
+    <AppLayout>
       {me && <PostForm />}
       {mainPosts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
-    </>
+    </AppLayout>
   );
 };
 

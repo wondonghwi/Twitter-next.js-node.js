@@ -10,8 +10,8 @@ import axios from "axios";
 import { END } from "redux-saga";
 import useSWR from "swr";
 import { fetcher } from "../utils/feture";
-import {backUrl} from "../config/config";
 import AppLayout from "../components/AppLayout";
+import {backUrl} from "../config/config";
 
 const Profile = () => {
   const dispatch = useDispatch();

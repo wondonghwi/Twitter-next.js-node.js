@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { PlusOutlined } from "@ant-design/icons";
-
 import ImagesZoom from "./ImagesZoom";
 import {backUrl} from "../config/config";
 
