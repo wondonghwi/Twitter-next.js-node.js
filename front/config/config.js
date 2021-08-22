@@ -1,1 +1,1 @@
-export const backUrl = 'http://13.125.192.125';
+export const backUrl = 'http://api.donghwi-reactbird.shop';
