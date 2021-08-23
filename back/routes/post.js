@@ -25,7 +25,7 @@ AWS.config.update({
 const upload = multer({
   storage: multerS3({
     s3: new AWS.S3(),
-    bucket: "donghwi-reactbird.shop;",
+    bucket: "donghwi-reactbird.shop",
     key(req, file, cb) {
       cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
     },
@@ -52,11 +52,13 @@ router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
     }
     if (req.body.image) {
       if (Array.isArray(req.body.image)) {
+        // 이미지를 여러 개 올리면 image: [제로초.png, 부기초.png]
         const images = await Promise.all(
           req.body.image.map((image) => Image.create({ src: image }))
         );
         await post.addImages(images);
       } else {
+        // 이미지를 하나만 올리면 image: 제로초.png
         const image = await Image.create({ src: req.body.image });
         await post.addImages(image);
       }
@@ -320,7 +322,7 @@ router.patch("/:postId", isLoggedIn, async (req, res, next) => {
             where: { name: tag.slice(1).toLowerCase() },
           })
         )
-      );
+      ); // [[노드, true], [리액트, true]]
       await post.setHashtags(result.map((v) => v[0]));
     }
     res.status(200).json({
@@ -334,6 +336,7 @@ router.patch("/:postId", isLoggedIn, async (req, res, next) => {
 });
 
 router.delete("/:postId", isLoggedIn, async (req, res, next) => {
+  // DELETE /post/10
   try {
     await Post.destroy({
       where: {
