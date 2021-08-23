@@ -11,23 +11,20 @@ import { END } from "redux-saga";
 import useSWR from "swr";
 import { fetcher } from "../utils/feture";
 import AppLayout from "../components/AppLayout";
-import {backUrl} from "../config/config";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-
   const { me } = useSelector((state) => state.user);
   const [followersLimit, setFollowersLimit] = useState(3);
   const [followingsLimit, setFollowingsLimit] = useState(3);
 
   //팔로워
   const { data: followersData, error: followerError } = useSWR(
-    `${backUrl}/user/followers?limit=${followersLimit}`,
+    `user/followers?limit=${followersLimit}`,
     fetcher
   );
   //팔로잉
   const { data: followingsData, error: followingError } = useSWR(
-    `${backUrl}/user/followings?limit=${followingsLimit}`,
+    `user/followings?limit=${followingsLimit}`,
     fetcher
   );
 
