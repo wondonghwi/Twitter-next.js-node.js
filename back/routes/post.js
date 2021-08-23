@@ -127,6 +127,12 @@ router.post("/:postId/comment", isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.post("/images", isLoggedIn, upload.array("image"), (req, res, next) => {
+  // POST /post/images
+  console.log(req.files);
+  res.json(req.files.map((v) => v.location));
+});
+
 router.get("/:postId", async (req, res, next) => {
   // GET /post/1
   try {
@@ -301,12 +307,6 @@ try {
   console.log("uploads 폴더가 없으므로 생성합니다.");
   fs.mkdirSync("uploads");
 }
-
-router.post("/images", isLoggedIn, upload.array("image"), (req, res, next) => {
-  // POST /post/images
-  console.log(req.files);
-  res.json(req.files.map((v) => v.location));
-});
 
 router.delete("/:postId", isLoggedIn, async (req, res, next) => {
   // DELETE /post/10
