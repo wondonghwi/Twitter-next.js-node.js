@@ -97,13 +97,7 @@ const PostForm = () => {
           console.log(v);
           return (
             <div key={v} style={{ display: "inline-block" }}>
-              <Image
-                width={200}
-                height={200}
-                src={v}
-                style={{ width: "200px" }}
-                alt="이미지 alt"
-              />
+              <Image width={200} height={200} src={v} alt="이미지 alt" />
               <div>
                 <Button onClick={onRemoveImage(i)}>제거</Button>
               </div>
