@@ -47,7 +47,7 @@ router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
             where: { name: tag.slice(1).toLowerCase() },
           })
         )
-      ); // [[노드, true], [리액트, true]]
+      );
       await post.addHashtags(result.map((v) => v[0]));
     }
     if (req.body.image) {
@@ -99,7 +99,7 @@ router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
 router.post("/images", isLoggedIn, upload.array("image"), (req, res, next) => {
   // POST /post/images
   console.log(req.files);
-  res.json(req.files.map((v) => v.location));
+  res.json(req.files.map((v) => v.location.replace(/\/original\//, "/thumb/")));
 });
 
 router.get("/:postId", async (req, res, next) => {

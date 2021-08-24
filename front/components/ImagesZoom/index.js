@@ -33,7 +33,10 @@ const ImagesZoom = ({ images, onClose }) => {
             {images.map((v) => (
               <ImgWrapper key={v.src}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={v.src} alt={v.src} />
+                <img
+                  src={v.src.replace(/\/thumb\//, "/original/")}
+                  alt={v.src}
+                />
               </ImgWrapper>
             ))}
           </Slick>
