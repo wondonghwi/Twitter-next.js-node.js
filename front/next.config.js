@@ -20,7 +20,8 @@ module.exports = withBundleAnalyzer({
       "i.ytimg.com",
       "placeimg.com",
       "s3.ap-northeast-2.amazonaws.com",
-      "https://nextjs.org/docs/api-reference/next/image#src",
+      "https://s3.ap-northeast-2.amazonaws.com",
+      "1629811032359_screen.jpg",
     ],
   },
 });
