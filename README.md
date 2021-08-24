@@ -1,6 +1,6 @@
 ## Next.js + Node.js를 이용해 Twitter 만들기 Project
 
-donghwi-reactbird.shop 도메인 구매 후 이용 (가비아)
+donghwi-reactbird.shop 도메인으로 이용
 
 > Front-End
 - ant-design
@@ -13,6 +13,7 @@ donghwi-reactbird.shop 도메인 구매 후 이용 (가비아)
 - express
 
 > Aws EC2 배포 진행(중)
-- front Ec2 서버
-- back Ec2 서버
-- 
+- front Ec2 서버 사용
+- back Ec2 서버 사용
+- S3 사용 (이미지 올리기)
+- lambda 사용
