@@ -15,6 +15,11 @@ module.exports = withBundleAnalyzer({
   compress: true,
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "i.ytimg.com", "placeimg.com"],
+    domains: [
+      "localhost",
+      "i.ytimg.com",
+      "placeimg.com",
+      "s3.ap-northeast-2.amazonaws.com",
+    ],
   },
 });

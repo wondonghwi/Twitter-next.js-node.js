@@ -11,6 +11,7 @@ import useInput from "../hooks/useInput";
 
 const PostForm = () => {
   const { imagePaths, addPostDone } = useSelector((state) => state.post);
+  console.log(imagePaths);
   const dispatch = useDispatch();
   const [text, onChangeText, setText] = useInput("");
 
@@ -92,20 +93,23 @@ const PostForm = () => {
         </Button>
       </div>
       <div>
-        {imagePaths.map((v, i) => (
-          <div key={v} style={{ display: "inline-block" }}>
-            <Image
-              width={200}
-              height={200}
-              src={v}
-              style={{ width: "200px" }}
-              alt="이미지 alt"
-            />
-            <div>
-              <Button onClick={onRemoveImage(i)}>제거</Button>
+        {imagePaths.map((v, i) => {
+          console.log(v);
+          return (
+            <div key={v} style={{ display: "inline-block" }}>
+              <Image
+                width={200}
+                height={200}
+                src={v}
+                style={{ width: "200px" }}
+                alt="이미지 alt"
+              />
+              <div>
+                <Button onClick={onRemoveImage(i)}>제거</Button>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Form>
   );
