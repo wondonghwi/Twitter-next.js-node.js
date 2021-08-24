@@ -34,10 +34,13 @@ const Post = () => {
           content={
             singlePost.Images[0]
               ? singlePost.Images[0].src
-              : "https://nodebird.com/favicon.ico"
+              : "http://donghwi-reactbird.shop/favicon.ico"
           }
         />
-        <meta property="og:url" content={`https://nodebird.com/post/${id}`} />
+        <meta
+          property="og:url"
+          content={`http://donghwi-reactbird.shop/post/${id}`}
+        />
       </Head>
       <PostCard post={singlePost} />
     </AppLayout>
