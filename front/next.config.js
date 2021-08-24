@@ -21,7 +21,6 @@ module.exports = withBundleAnalyzer({
       "placeimg.com",
       "s3.ap-northeast-2.amazonaws.com",
       "https://s3.ap-northeast-2.amazonaws.com",
-      "1629811032359_screen.jpg",
     ],
   },
 });

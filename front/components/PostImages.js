@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import Image from "next/image";
 import { PlusOutlined } from "@ant-design/icons";
 import ImagesZoom from "./ImagesZoom";
 
@@ -16,12 +15,11 @@ const PostImages = ({ images }) => {
   if (images.length === 1) {
     return (
       <>
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           role="presentation"
           src={`${images[0].src}`}
           alt={images[0].src}
-          width={200}
-          height={200}
           onClick={onZoom}
         />
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
@@ -31,20 +29,18 @@ const PostImages = ({ images }) => {
   if (images.length === 2) {
     return (
       <>
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           role="presentation"
-          style={{ display: "inline-block" }}
-          width={200}
-          height={200}
+          style={{ width: "50%", display: "inline-block" }}
           src={`${images[0].src}`}
           alt={images[0].src}
           onClick={onZoom}
         />
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           role="presentation"
-          style={{ display: "inline-block" }}
-          width={200}
-          height={200}
+          style={{ width: "50%", display: "inline-block" }}
           src={`${images[1].src}`}
           alt={images[1].src}
           onClick={onZoom}
@@ -53,14 +49,13 @@ const PostImages = ({ images }) => {
       </>
     );
   }
-
   return (
     <>
       <div>
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           role="presentation"
-          width={200}
-          height={200}
+          style={{ width: "50%" }}
           src={`${images[0].src}`}
           alt={images[0].src}
           onClick={onZoom}

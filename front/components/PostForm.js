@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { Button, Form, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/image";
 import {
   ADD_POST_REQUEST,
   UPLOAD_IMAGES_REQUEST,
@@ -11,7 +10,6 @@ import useInput from "../hooks/useInput";
 
 const PostForm = () => {
   const { imagePaths, addPostDone } = useSelector((state) => state.post);
-  console.log(imagePaths);
   const dispatch = useDispatch();
   const [text, onChangeText, setText] = useInput("");
 
@@ -93,17 +91,19 @@ const PostForm = () => {
         </Button>
       </div>
       <div>
-        {imagePaths.map((v, i) => {
-          console.log(v);
-          return (
-            <div key={v} style={{ display: "inline-block" }}>
-              <Image width={200} height={200} src={v} alt="이미지 alt" />
-              <div>
-                <Button onClick={onRemoveImage(i)}>제거</Button>
-              </div>
+        {imagePaths.map((v, i) => (
+          <div key={v} style={{ display: "inline-block" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={v.replace(/\/thumb\//, "/original/")}
+              style={{ width: "200px" }}
+              alt={v}
+            />
+            <div>
+              <Button onClick={onRemoveImage(i)}>제거</Button>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </Form>
   );
