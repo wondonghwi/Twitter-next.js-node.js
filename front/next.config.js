@@ -20,6 +20,7 @@ module.exports = withBundleAnalyzer({
       "i.ytimg.com",
       "placeimg.com",
       "s3.ap-northeast-2.amazonaws.com",
+      "https://nextjs.org/docs/api-reference/next/image#src",
     ],
   },
 });
