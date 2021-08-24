@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { Button, Form, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 import {
   ADD_POST_REQUEST,
   UPLOAD_IMAGES_REQUEST,
@@ -96,10 +97,11 @@ const PostForm = () => {
           console.log(v);
           return (
             <div key={v} style={{ display: "inline-block" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
+                width={200}
+                height={200}
                 src={v}
-                style={{ width: "200px", height: "200px" }}
+                style={{ width: "200px" }}
                 alt="이미지 alt"
               />
               <div>
