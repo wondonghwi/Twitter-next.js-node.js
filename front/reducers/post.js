@@ -107,11 +107,12 @@ const reducer = (state = initialState, action) =>
         draft.uploadImagesDone = false;
         draft.uploadImagesError = null;
         break;
-      case UPLOAD_IMAGES_SUCCESS:
+      case UPLOAD_IMAGES_SUCCESS: {
         draft.imagePaths = draft.imagePaths.concat(action.data);
         draft.uploadImagesLoading = false;
         draft.uploadImagesDone = true;
         break;
+      }
       case UPLOAD_IMAGES_FAILURE:
         draft.uploadImagesLoading = false;
         draft.uploadImagesError = action.error;
@@ -227,18 +228,6 @@ const reducer = (state = initialState, action) =>
         const post = draft.mainPosts.find((v) => v.id === action.data.PostId);
         post.Comments.unshift(action.data);
         break;
-        //immer를 사용안했을 경우
-        // const postIndex = state.mainPosts.findIndex((v) => v.id === action.data.postId);
-        // const post = { ...state.mainPosts[postIndex] };
-        // post.Comments = [dummyComment(action.data.content), ...post.Comments];
-        // const mainPosts = [...state.mainPosts];
-        // mainPosts[postIndex] = post;
-        // return {
-        //   ...state,
-        //   mainPosts,
-        //   addCommentLoading: false,
-        //   addCommentDone: true,
-        // };
       }
       case ADD_COMMENT_FAILURE:
         draft.addCommentLoading = false;

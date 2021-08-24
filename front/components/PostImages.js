@@ -9,7 +9,6 @@ const PostImages = ({ images }) => {
   const onZoom = useCallback(() => {
     setShowImagesZoom(true);
   }, []);
-
   const onClose = useCallback(() => {
     setShowImagesZoom(false);
   }, []);
@@ -19,10 +18,10 @@ const PostImages = ({ images }) => {
       <>
         <Image
           role="presentation"
-          src={images[0].src}
+          src={`${images[0].src}`}
+          alt={images[0].src}
           width={200}
           height={200}
-          alt={images[0].src}
           onClick={onZoom}
         />
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
@@ -32,37 +31,38 @@ const PostImages = ({ images }) => {
   if (images.length === 2) {
     return (
       <>
-        <div>
-          <Image
-            role="presentation"
-            src={images[0].src}
-            alt={images[0].src}
-            width={200}
-            height={200}
-            onClick={onZoom}
-          />
-          <Image
-            role="presentation"
-            src={images[1].src}
-            alt={images[1].src}
-            width={200}
-            height={200}
-            onClick={onZoom}
-          />
-        </div>
+        <Image
+          role="presentation"
+          style={{ display: "inline-block" }}
+          width={200}
+          height={200}
+          src={`${images[0].src}`}
+          alt={images[0].src}
+          onClick={onZoom}
+        />
+        <Image
+          role="presentation"
+          style={{ display: "inline-block" }}
+          width={200}
+          height={200}
+          src={`${images[1].src}`}
+          alt={images[1].src}
+          onClick={onZoom}
+        />
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
       </>
     );
   }
+
   return (
     <>
       <div>
         <Image
           role="presentation"
-          src={images[0].src}
-          alt={images[0].src}
           width={200}
           height={200}
+          src={`${images[0].src}`}
+          alt={images[0].src}
           onClick={onZoom}
         />
         <div
