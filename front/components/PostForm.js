@@ -97,9 +97,9 @@ const PostForm = () => {
             <Image
               width={200}
               height={200}
-              src={v.replace(/\/thumb\//, "/original/")}
+              src={v}
               style={{ width: "200px" }}
-              alt={v}
+              alt="이미지 alt"
             />
             <div>
               <Button onClick={onRemoveImage(i)}>제거</Button>
