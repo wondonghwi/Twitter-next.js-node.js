@@ -17,3 +17,5 @@ donghwi-reactbird.shop 도메인으로 이용
 - back Ec2 서버 사용
 - S3 사용 (이미지 올리기)
 - lambda 사용
+
+> nginx를 이용해 https 주소를 사용할 수 있도록 서버쪽 작업 진행중!
