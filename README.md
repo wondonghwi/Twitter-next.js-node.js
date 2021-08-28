@@ -19,3 +19,4 @@ donghwi-reactbird.shop 도메인으로 이용
 - lambda 사용
 
 > nginx를 이용해 https 주소를 사용할 수 있도록 서버쪽 작업 진행중 현재 코드작성보다 aws / nginx 작업 진행(중)!
+> firebase학습진행
