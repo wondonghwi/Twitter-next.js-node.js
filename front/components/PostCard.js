@@ -95,9 +95,8 @@ const PostCard = ({ post }) => {
             key="ellipsis"
             content={
               <Button.Group>
-                {id && post.User.id === id ? (
+                {id && post.User.id === id && (
                   <>
-                    <Button>수정</Button>
                     <Button
                       type="danger"
                       loading={removePostLoading}
@@ -106,8 +105,6 @@ const PostCard = ({ post }) => {
                       삭제
                     </Button>
                   </>
-                ) : (
-                  <Button>신고</Button>
                 )}
               </Button.Group>
             }
