@@ -1,6 +1,6 @@
 ## Next.js + Node.js를 이용해 Twitter 만들기 Project
 
-donghwi-reactbird.shop 도메인으로 이용
+donghwi-reactbird.shop 도메인으로 이용 (현재 서버비용 발생이유로 AWS EC2 종료로 접속 불가)
 
 ### [웹페이지 바로가기](http://donghwi-reactbird.shop/)
 
