@@ -14,10 +14,10 @@ donghwi-reactbird.shop 도메인으로 이용 (현재 서버비용 발생이유�
 - node.js
 - express
 
-> Aws EC2 배포 진행(중)
-- front Ec2 서버 사용
-- back Ec2 서버 사용
-- S3 사용 (이미지 올리기)
+> Aws EC2 배포 진행
+- front Ec2 서버 사용 (현재 종료)
+- back Ec2 서버 사용 (현재 종료)
+- S3 사용 (이미지 올리기용도로 사용)
 - lambda 사용
 
-> nginx를 이용해 https 주소를 사용할 수 있도록 서버쪽 작업 진행중 현재 코드작성보다 aws / nginx 작업 진행경험 후 제거
+> nginx를 이용해 https 주소를 사용할 수 있도록 서버쪽 작업 진행
